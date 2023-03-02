@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,41 +16,27 @@ function App() {
       </div>
       <div className="wrapper">
          <div className="form-container">
-            <div className="form-inner">
-               <form action="#" className="login">
-                  <div className="field">
-                     <input type="text" placeholder="Email Address" required></input>
-                  </div>
-                  <div className="field">
-                     <input type="password" placeholder="Password" required></input>
-                  </div>
-                  <div className="pass-link">
-                     <a href="#">Forgot password?</a>
-                  </div>
-                  <div className="field btn">
-                     <div className="btn-layer"></div>
-                     <input type="submit" value="Login"></input>
-                  </div>
-                  <div className="signup-link">
-                     Not a member? <a href="">Signup now</a>
-                  </div>
-               </form>
-               <form action="#" className="signup">
-                  <div className="field">
-                     <input type="text" placeholder="Email Address" required></input>
-                  </div>
-                  <div className="field">
-                     <input type="password" placeholder="Password" required></input>
-                  </div>
-                  <div className="field">
-                     <input type="password" placeholder="Confirm password" required></input>
-                  </div>
-                  <div className="field btn">
-                     <div className="btn-layer"></div>
-                     <input type="submit" value="Signup"></input>
-                  </div>
-               </form>
-            </div>
+          <div className='login-box'>
+            <div className="title"><AccountCircleRoundedIcon></AccountCircleRoundedIcon>Login</div>
+              <div className="form-inner">
+                <form action="#" className="login">
+                    <div className="field">
+                      <input className="field-input" type="text" placeholder="Email" required></input>
+                    </div>
+                    <div className="field">
+                      <input className="field-input" type="password" placeholder="Senha" required></input>
+                    </div>
+                    <div className="pass-link">
+                      <a href="#">Esqueceu a senha?</a>
+                    </div>
+                    <div className="field btn">
+                      <div className="btn-layer"></div>
+                      <input className='field-login' type="submit" value="Entrar"></input>
+                    </div>
+                </form>               
+              </div>
+          </div>
+          
          </div>
       </div>
       {/* <div classNameName="card">
