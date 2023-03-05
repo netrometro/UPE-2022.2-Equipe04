@@ -40,3 +40,24 @@
 .read-the-docs {
   color: #888;
 }
+
+.login-box{
+  background-color: rgb(53, 53, 53);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.field-input{
+  padding: 3px;
+  color: black;
+  background-color: whitesmoke;
+  margin: 2px;
+}
+
+.field-login{
+  padding: 5px;
+  color: black;
+  background-color: whitesmoke;
+  margin: 2px;
+  border-radius: 5px;
+}
