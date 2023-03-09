@@ -17,7 +17,7 @@ async function bootstrap() {
 
     fastify.get('/', async () => {
         const count = await prisma.user.count()
-        return {hello: 'world'}
+        return {count}
     })
 
     await fastify.listen({port: 3333})
