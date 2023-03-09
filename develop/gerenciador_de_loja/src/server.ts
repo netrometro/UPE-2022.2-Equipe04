@@ -7,7 +7,7 @@ const prisma = new PrismaClient({
     log: ['query'],
 })
 
-async function bootstrap(){
+async function bootstrap() {
     const fastify = Fastify({
         logger: true,
     })
@@ -46,6 +46,12 @@ async function bootstrap(){
         return reply.status(201).send({message: 'Produto criado com sucesso!'});
     })
 
-    await fastify.listen({port: 3333, host: 'localhost'})
+    fastify.get('/', async () => {
+        const count = await prisma.user.count()
+        return {hello: 'world'}
+    })
+
+    await fastify.listen({port: 3333})
 }
+
 bootstrap()
