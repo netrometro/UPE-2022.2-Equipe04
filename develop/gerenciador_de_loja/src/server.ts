@@ -1,5 +1,6 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors'
+import z from 'zod';
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient({
@@ -15,17 +16,36 @@ async function bootstrap(){
         origin: true,
     })
 
-    fastify.get('/produtos/count', async () => {
-        const count = await prisma.produtos.count()
-
-        return(count)
+    fastify.get('/produtos', async () => {
+        const produtos = await prisma.produtos.findMany()
+        return (produtos)
     })
-    fastify.post('/produtos', async (request, reply) => {
-        const { tipo } = request.body
 
-        
-        return { tipo }
+    fastify.post('/produtos/create', async (request, reply) => {
+        const createProdutosBody = z.object({
+            tipo: z.string(),
+            tamanho: z.string(),
+            cor: z.string(),
+            material: z.string().optional(),
+            marca: z.string(),
+            quantidade: z.number(),
+            preco: z.number(),
+        })
+        const {tipo, tamanho, cor, material, marca, quantidade, preco} = createProdutosBody.parse(request.body)
+        await prisma.produtos.create({
+            data: {
+                tipo,
+                tamanho,
+                cor,
+                material,
+                marca,
+                quantidade,
+                preco,
+            }
+        })
+        return reply.status(201).send({message: 'Produto criado com sucesso!'});
     })
+
     await fastify.listen({port: 3333, host: 'localhost'})
 }
 bootstrap()
