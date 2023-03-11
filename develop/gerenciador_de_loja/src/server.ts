@@ -1,57 +1,33 @@
 import Fastify from 'fastify';
-import cors from '@fastify/cors'
-import z from 'zod';
-import { PrismaClient } from '@prisma/client'
+import routes from './routes/Produtos.routes';
+import { PrismaClient } from '@prisma/client';
+import { FastifyInstance } from 'fastify/types/instance';
 
 const prisma = new PrismaClient({
-    log: ['query'],
-})
+  log: ['query'],
+});
 
-async function bootstrap() {
-    const fastify = Fastify({
-        logger: true,
-    })
+await prisma.$connect();
 
-    await fastify.register(cors, {
-        origin: true,
-    })
+const fastify: FastifyInstance = Fastify({
+  logger: true
+});
 
-    fastify.get('/produtos', async () => {
-        const produtos = await prisma.produtos.findMany()
-        return (produtos)
-    })
+await routes(fastify, prisma);
 
-    fastify.post('/produtos/create', async (request, reply) => {
-        const createProdutosBody = z.object({
-            tipo: z.string(),
-            tamanho: z.string(),
-            cor: z.string(),
-            material: z.string().optional(),
-            marca: z.string(),
-            quantidade: z.number(),
-            preco: z.number(),
-        })
-        const {tipo, tamanho, cor, material, marca, quantidade, preco} = createProdutosBody.parse(request.body)
-        await prisma.produtos.create({
-            data: {
-                tipo,
-                tamanho,
-                cor,
-                material,
-                marca,
-                quantidade,
-                preco,
-            }
-        })
-        return reply.status(201).send({message: 'Produto criado com sucesso!'});
-    })
+fastify.get('/', async (request, reply) => {
+  return { hello: 'world' }
+});
 
-    fastify.get('/', async () => {
-        const count = await prisma.user.count()
-        return {count}
-    })
-
-    await fastify.listen({port: 3333})
+/**
+ * Run the server!
+ */
+const start = async () => {
+  try {
+    await fastify.listen({ port: 3333 })
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
 }
-
-bootstrap()
+start() 
