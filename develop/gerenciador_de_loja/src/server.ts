@@ -1,5 +1,5 @@
 import Fastify from 'fastify';
-import routes from './routes/Produtos.routes';
+import routes from './controllers/ProdutosController';
 import { PrismaClient } from '@prisma/client';
 import { FastifyInstance } from 'fastify/types/instance';
 
