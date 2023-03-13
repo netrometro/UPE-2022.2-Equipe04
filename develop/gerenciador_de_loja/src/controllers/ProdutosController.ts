@@ -37,36 +37,39 @@ export default async function routes(fastify: FastifyInstance, prisma: PrismaCli
         tipo: string;
         tamanho: string;
         cor: string;
-        material: string;
+        material?: string;
         marca: string;
         quantidade: number;
         preco: number;
     };
-
+    
     fastify.post<{Body: IProdutoBody}>('/produtos/create', async (request, reply) => {   
         
         try{
-            const {tipo, tamanho, cor, material, marca, quantidade, preco} = request.body;
-            
+            const {tipo, tamanho, cor, marca, quantidade, preco} = request.body;
+            if (!tipo || !tamanho || !cor || !marca || !quantidade || !preco) {
+                throw new Error('Invalid request body');
+            }
             await prisma.produtos.create({
                 
                 data: {
-                    tipo,
+                    tipo, 
                     tamanho,
                     cor,
-                    material,
+                    material: request.body.material,
                     marca,
-                    quantidade,
+                    quantidade, 
                     preco,
-                }
+                },
 
             })
 
             reply.status(201).send({message: 'Produto criado com sucesso!'});
-        
+            console.log(`Produto criado com tipo=${tipo}, tamanho=${tamanho}, cor=${cor}, marca=${marca}, quantidade=${quantidade}, preco=${preco}`);
         } catch (error) {
                 
             console.error(error);
+            
             reply.status(400).send({message: 'Erro ao criar produto!'});
             
         }

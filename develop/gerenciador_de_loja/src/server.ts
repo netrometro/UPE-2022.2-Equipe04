@@ -2,6 +2,7 @@ import Fastify from 'fastify';
 import routes from './controllers/ProdutosController';
 import { PrismaClient } from '@prisma/client';
 import { FastifyInstance } from 'fastify/types/instance';
+import fastifyCors from '@fastify/cors';
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -11,6 +12,10 @@ await prisma.$connect();
 
 const fastify: FastifyInstance = Fastify({
   logger: true
+});
+
+fastify.register(fastifyCors, {
+  origin: '*',
 });
 
 await routes(fastify, prisma);
