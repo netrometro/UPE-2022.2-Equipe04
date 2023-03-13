@@ -1,15 +1,12 @@
+"use client";
 import { Teste } from "../../components/teste";
+import { Produtos } from "../../components/AddProduto";
 
 export default function Home() {
   return (
-
-
-    <><h1>Hello world</h1>
-    
-    <div>
-      <Teste />
-    </div></>
-
-  )
+    <>
+      <Produtos
+       />
+    </>
+  );
 }
-
