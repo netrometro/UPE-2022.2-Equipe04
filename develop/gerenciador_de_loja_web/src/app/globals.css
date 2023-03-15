@@ -109,3 +109,9 @@ a {
 .home-div {
   margin: 15px;
 }
+
+.login_box {
+  width: 340px;
+
+  background-color: #fff;
+}
