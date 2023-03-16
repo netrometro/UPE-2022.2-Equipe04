@@ -111,7 +111,48 @@ a {
 }
 
 .login_box {
-  width: 340px;
+  width: 350px;
+  height: 220px;
+  background: #3a7297;
+  border-radius: 10px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+}
 
-  background-color: #fff;
+.login_box_input {
+  width: 320px;
+  height: 40px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  outline: none;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.login_button {
+  width: 100px;
+  height: 30px;
+  background: #1a499a;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  margin-left: 125px;
+  font-size: 16px;
+  cursor: pointer;
+  
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 500;
+  color: #fff;
+  margin: 10px;
+  font-family: cursive;
+  padding-left: 120px;
 }

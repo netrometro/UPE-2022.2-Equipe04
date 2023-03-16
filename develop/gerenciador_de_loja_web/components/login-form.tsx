@@ -1,5 +1,4 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik';
-import styles from './login-form.module.css'
 
 interface Values {
     username: string;
@@ -8,8 +7,8 @@ interface Values {
 
 export default function LoginForm() {
     return (
-      <div className={styles.login_box + ' p-3'}>
-        <h1 className="display-6 mb-3">Login</h1>
+      <div>
+        
         <Formik
           initialValues={{
             username: '',
@@ -27,18 +26,21 @@ export default function LoginForm() {
           }}
 
         >
-          <Form>
-            <div className="mb-3">
-              <Field className="form-control" id="username" name="username" placeholder="Nome" aria-describedby="usernameHelp" />
-            </div>
-  
-            <div className="mb-3">
-              <Field className="form-control" id="password" name="password" placeholder="Senha" type="password" />
-            </div>
+          <div className="login_box">
+            <h1 className='title'>Entrar</h1>
+            <Form>
+              <div className="mb-3">
+                <Field className="login_box_input" id="username" name="username" placeholder="Nome" aria-describedby="usernameHelp" />
+              </div>
+    
+              <div className="mb-3">
+                <Field className="login_box_input" id="password" name="password" placeholder="Senha" type="password" />
+              </div>
 
-            <button type="submit" className="btn btn-primary">Entrar</button>
-          </Form>
+              <button type="submit" className="login_button">Entrar</button>
+            </Form>
+          </div>
         </Formik>
       </div>
     );
-  };
+}

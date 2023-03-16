@@ -1,7 +1,5 @@
 import fastify from 'fastify';
-import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import prisma from './prisma';
 
 const app = fastify();
 
