@@ -26,15 +26,9 @@
     "jsonwebtoken": "^9.0.0",
     "next-auth": "^4.20.1",
     "react": "^18.2.0",
-<<<<<<< Updated upstream
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.8",
     "zod": "^3.21.4"
-=======
-    "react-dom": "^18.2.0",
-    "styled-components": "^5.3.8",
-    "zod": "^3.21.4"
->>>>>>> Stashed changes
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.1",
