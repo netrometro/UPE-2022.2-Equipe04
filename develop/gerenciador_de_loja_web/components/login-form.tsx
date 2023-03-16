@@ -1,7 +1,7 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik';
 
 interface Values {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -11,7 +11,7 @@ export default function LoginForm() {
         
         <Formik
           initialValues={{
-            username: '',
+            email: '',
             password: '',
           }}
 
@@ -30,7 +30,7 @@ export default function LoginForm() {
             <h1 className='title'>Entrar</h1>
             <Form>
               <div className="mb-3">
-                <Field className="login_box_input" id="username" name="username" placeholder="Nome" aria-describedby="usernameHelp" />
+                <Field className="login_box_input" id="email" name="email" placeholder="Email" aria-describedby="useremailHelp" />
               </div>
     
               <div className="mb-3">
