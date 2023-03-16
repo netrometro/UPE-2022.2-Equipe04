@@ -18,18 +18,17 @@ export function Produtos(){
     try{
 
       const response = api.post('/produtos/create', {
-        body: {
-          tipo: tipoProduto,
-          tamanho: tamanhoProduto,
-          cor: corProduto,
-          material: materialProduto,
-          marca: marcaProduto,
-          quantidade: quantidadeProduto,
-          preco: precoProduto,
-        }
+        tipo: tipoProduto,
+        tamanho: tamanhoProduto,
+        cor: corProduto,
+        material: materialProduto,
+        marca: marcaProduto,
+        quantidade: quantidadeProduto,
+        preco: precoProduto,
+
       });
       alert('Produto cadastrado com sucesso');
-      console.log(response);
+      console.log( response);
     
       setTipoProduto('');
       setTamanhoProduto('');
@@ -37,7 +36,7 @@ export function Produtos(){
       setMaterialProduto('');
       setMarcaProduto('');
       setQuantidadeProduto(0);
-      setPrecoProduto(0);
+      setPrecoProduto(0.0);
 
     }catch(err){
       console.log(err);
@@ -68,6 +67,7 @@ export function Produtos(){
         <button type="submit">Cadastrar</button>
 
       </form>
+
     </div>
   )
 }

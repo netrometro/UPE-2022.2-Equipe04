@@ -47,9 +47,6 @@ export default async function routes(fastify: FastifyInstance, prisma: PrismaCli
         
         try{
             const {tipo, tamanho, cor, marca, quantidade, preco} = request.body;
-            if (!tipo || !tamanho || !cor || !marca || !quantidade || !preco) {
-                throw new Error('Invalid request body');
-            }
             await prisma.produtos.create({
                 
                 data: {
