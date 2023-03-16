@@ -7,26 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model produtos {
-  id         Int      @id @default(autoincrement())
-  tipo       String
-  tamanho    String
-  cor        String
-  material   String?
-  marca      String
-  quantidade Int
-  preco      Float
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
-
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  role    Role     @default(USER)
-  posts   Post[]
-  profile Profile?
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  name     String
+  role     Role     @default(USER)
 }
 
 model Profile {
@@ -55,4 +41,30 @@ model Category {
 enum Role {
   USER
   ADMIN
+}
+
+model Supplier {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  info      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  products  Product[]
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Float
+  size      String
+  stock     Int
+  info      String?
+  photo     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  supplier  Supplier @relation(fields: [supplierId], references: [id])
+  supplierId Int
 }

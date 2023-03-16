@@ -1,8 +1,9 @@
-import Fastify from 'fastify';
+import Fastify, { fastify } from 'fastify'
 import routes from './controllers/ProdutosController';
 import { PrismaClient } from '@prisma/client';
 import { FastifyInstance } from 'fastify/types/instance';
 import fastifyCors from '@fastify/cors';
+import { usersRoutes } from './routes/user';
 
 const prisma = new PrismaClient({
   log: ['query'],
@@ -19,10 +20,8 @@ fastify.register(fastifyCors, {
 });
 
 await routes(fastify, prisma);
+await fastify.register(usersRoutes)
 
-fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
-});
 
 /**
  * Run the server!
