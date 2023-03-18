@@ -17,7 +17,7 @@ export async function authRoutes(fastify: FastifyInstance) {
     });
 
     if (existingUser) {
-      reply.status(400).send({ error: 'User already exists' });
+      reply.status(400).send({ error: 'Usuário já existe' });
       return;
     }
 
@@ -29,7 +29,7 @@ export async function authRoutes(fastify: FastifyInstance) {
         },
       });
 
-    reply.send({ message: 'User created', user: newUser });
+    reply.send({ message: 'Usuário criado', user: newUser });
   });
 
   fastify.post('/auth', async (request, reply) => {
@@ -44,19 +44,19 @@ export async function authRoutes(fastify: FastifyInstance) {
 
     if (!user) {
       // Se o usuário não for encontrado, envia uma resposta com status 404
-      reply.status(404).send({ error: 'User not found' });
+      reply.status(404).send({ error: 'Usuário não encontrado' });
       return;
     }
 
     // Verifica se a senha fornecida corresponde à senha do usuário
     if (user.password !== password) {
       // Se a senha estiver incorreta, envia uma resposta com status 400
-      reply.status(400).send({ error: 'Invalid password' });
+      reply.status(400).send({ error: 'Senha inválida' });
       return;
     }
 
     // Se o email e a senha estiverem corretos, envia uma resposta com status 200
-    reply.send({ message: 'User logged in' });
+    reply.status(201).send({ message: 'Usuário logado' });
   });
 
 }

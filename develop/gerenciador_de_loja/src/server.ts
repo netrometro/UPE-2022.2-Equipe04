@@ -1,17 +1,10 @@
-import Fastify, { fastify } from 'fastify'
-import routes from './controllers/ProdutosController';
-import { PrismaClient } from '@prisma/client';
+import Fastify from 'fastify'
+import productsRoutes from './controllers/ProductsController';
 import { FastifyInstance } from 'fastify/types/instance';
 import fastifyCors from '@fastify/cors';
 import { usersRoutes } from './routes/user';
 
-const prisma = new PrismaClient({
-  log: ['query'],
-});
-
-await prisma.$connect();
-
-const fastify: FastifyInstance = Fastify({
+export const fastify: FastifyInstance = Fastify({
   logger: true
 });
 
@@ -19,8 +12,8 @@ fastify.register(fastifyCors, {
   origin: '*',
 });
 
-await routes(fastify, prisma);
-await fastify.register(usersRoutes)
+fastify.register(productsRoutes);
+fastify.register(usersRoutes)
 
 
 /**
