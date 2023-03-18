@@ -30,3 +30,6 @@ dist-ssr
 .env.production.local
 .env.local
 develop/gerenciador_de_loja/.env
+
+
+develop/gerenciador_de_loja/prisma/migrations/migration_lock.toml
