@@ -1,26 +1,30 @@
 import Fastify from 'fastify'
-import { PrismaClient } from '@prisma/client'
-import cors from '@fastify/cors'
+import productsRoutes from './controllers/ProductsController';
+import { FastifyInstance } from 'fastify/types/instance';
+import fastifyCors from '@fastify/cors';
+import { usersRoutes } from './controllers/UserController';
 
-const prisma = new PrismaClient({
-    log: ['query'],
-})
+export const fastify: FastifyInstance = Fastify({
+  logger: true
+});
 
-async function bootstrap() {
-    const fastify = Fastify({
-        logger: true,
-    })
+fastify.register(fastifyCors, {
+  origin: '*',
+});
 
-    await fastify.register(cors, {
-        origin: true,
-    })
+fastify.register(productsRoutes);
+fastify.register(usersRoutes)
 
-    fastify.get('/', async () => {
-        const count = await prisma.user.count()
-        return {count}
-    })
 
-    await fastify.listen({port: 3333})
+/**
+ * Run the server!
+ */
+const start = async () => {
+  try {
+    await fastify.listen({ port: 3333 })
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
 }
-
-bootstrap()
+start() 
