@@ -2,11 +2,13 @@
   "name": "gerenciador_de_loja",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc && vite build",
     "preview": "vite preview"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
